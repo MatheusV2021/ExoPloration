@@ -8,7 +8,7 @@ mp_drawing = mp.solutions.drawing_utils
 
 cap = cv2.VideoCapture(0)
 
-mao_fechada = False
+dedao_fechado = False  # Variável para rastrear o estado do polegar
 
 def calcular_distancia(ponto1, ponto2):
     return ((ponto1.x - ponto2.x) ** 2 + (ponto1.y - ponto2.y) ** 2) ** 0.5
@@ -24,34 +24,33 @@ while True:
         for hand_landmarks in result.multi_hand_landmarks:
             mp_drawing.draw_landmarks(img, hand_landmarks, mp_hands.HAND_CONNECTIONS)
 
+            # Obter as coordenadas do polegar e da base do dedo indicador
+            polegar = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP]
+            base_indicador = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_MCP]
 
+            # Calcular a distância entre o polegar e a base do dedo indicador
+            distancia_thumb_indicador = calcular_distancia(polegar, base_indicador)
+
+            # Condição para detectar quando o polegar se aproxima da base do indicador
+            if distancia_thumb_indicador < 0.05:  # Ajuste o valor conforme necessário
+                if not dedao_fechado:
+                    pyautogui.mouseDown()  # Clique do mouse quando o polegar se aproxima
+                    dedao_fechado = True
+            else:
+                # Solta o clique quando o polegar não estiver próximo da base do indicador
+                if dedao_fechado:
+                    pyautogui.mouseUp()
+                    dedao_fechado = False
+
+            # Mover o mouse baseado na posição do indicador
             x = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x
             y = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y
-
 
             screen_width, screen_height = pyautogui.size()
             mouse_x = int(x * screen_width)
             mouse_y = int(y * screen_height)
 
-
             pyautogui.moveTo(mouse_x, mouse_y)
-
-
-            polegar = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP]
-            indicador = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP]
-            medio = hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_TIP]
-
-            distancia_thumb_indicador = calcular_distancia(polegar, indicador)
-            distancia_indicador_medio = calcular_distancia(indicador, medio)
-
-            if distancia_thumb_indicador < 0.05 and distancia_indicador_medio < 0.05:
-                if not mao_fechada:
-                    pyautogui.mouseDown()
-                    mao_fechada = True
-            else:
-                if mao_fechada:
-                    pyautogui.mouseUp()
-                    mao_fechada = False
 
     cv2.imshow("Hand Tracking", img)
 
