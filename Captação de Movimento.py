@@ -9,7 +9,8 @@ mp_drawing = mp.solutions.drawing_utils
 
 cap = cv2.VideoCapture(0)
 
-dedao_fechado = False  # Variável para rastrear o estado do polegar
+dedao_fechado = False  # Variável para rastrear o estado do polegar (mão direita)
+scroll_atual = 0  # Variável para rastrear o estado de scroll (mão esquerda)
 
 # Função para calcular a distância entre dois pontos
 def calcular_distancia(ponto1, ponto2):
@@ -58,9 +59,25 @@ while True:
 
                 pyautogui.moveTo(mouse_x, mouse_y)
 
-            else:
-                # Mão esquerda é detectada, mas não controla o mouse
-                pass
+            elif hand_label == 'Left':  # A mão esquerda realiza o scroll
+                # Obter as coordenadas do polegar e da ponta do dedo indicador
+                polegar_esquerdo = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP]
+                indicador_esquerdo = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP]
+
+                # Calcular a distância entre o polegar e o indicador da mão esquerda
+                distancia_esquerda = calcular_distancia(polegar_esquerdo, indicador_esquerdo)
+
+                # Lógica de rolagem: quanto menor a distância, maior a rolagem
+                if distancia_esquerda < 0.05:
+                    if scroll_atual != 1:
+                        pyautogui.scroll(100)  # Scroll up
+                        scroll_atual = 1
+                elif distancia_esquerda > 0.1:
+                    if scroll_atual != -1:
+                        pyautogui.scroll(-100)  # Scroll down
+                        scroll_atual = -1
+                else:
+                    scroll_atual = 0  # Reset do estado de scroll
 
     cv2.imshow("Hand Tracking", img)
 
