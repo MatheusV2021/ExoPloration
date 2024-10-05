@@ -70,11 +70,11 @@ while True:
                 # Lógica de rolagem: quanto menor a distância, maior a rolagem
                 if distancia_esquerda < 0.05:
                     if scroll_atual != 1:
-                        pyautogui.scroll(100)  # Scroll up
+                        pyautogui.scroll(-100)  # Scroll up
                         scroll_atual = 1
                 elif distancia_esquerda > 0.1:
                     if scroll_atual != -1:
-                        pyautogui.scroll(-100)  # Scroll down
+                        pyautogui.scroll(100)  # Scroll down
                         scroll_atual = -1
                 else:
                     scroll_atual = 0  # Reset do estado de scroll
