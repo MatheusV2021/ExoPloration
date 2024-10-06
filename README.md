@@ -32,7 +32,7 @@ Para executar o projeto, certifique-se de que sua câmera esteja conectada e fun
 
 ```bash
 python Captação de Movimento.py
-
+```
 
 ## Comandos
 
