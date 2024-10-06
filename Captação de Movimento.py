@@ -44,7 +44,7 @@ while True:
                 distancia_thumb_meio = calcular_distancia(polegar, meio_dedo)
 
                 # Condição para o clique único (quando o polegar e o dedo médio se tocam)
-                if distancia_thumb_meio < 0.05 and not clique_unico_executado:
+                if distancia_thumb_meio < 0.075 and not clique_unico_executado:
                     pyautogui.click()  # Executa o clique único
                     clique_unico_executado = True  # Marca o clique como executado
 
