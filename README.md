@@ -32,3 +32,18 @@ Para executar o projeto, certifique-se de que sua câmera esteja conectada e fun
 
 ```bash
 python Captação de Movimento.py
+
+
+## Comandos
+
+### Mão Direita:
+- **Movimento do mouse**: O dedo indicador da mão direita controla o movimento do cursor. Mova o indicador para direcionar o mouse na tela.
+- **Clicar e segurar**: Aproximar o polegar da base da mão direita aciona o comando de "clique e segurar", simulando um clique contínuo.
+- **Clique único**: Tocar o polegar com o dedo médio da mão direita resulta em um clique único do mouse.
+
+### Mão Esquerda:
+- **Zoom in**: Aproxime o dedo indicador do polegar para dar zoom in.
+- **Zoom out**: Afaste o dedo indicador do polegar para dar zoom out.
+
+Esses comandos permitem controlar o mouse e realizar ações de zoom de forma intuitiva usando gestos com as mãos.
+
