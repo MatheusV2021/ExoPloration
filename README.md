@@ -48,10 +48,10 @@ python Captação de Movimento.py
 
 ### Mão Esquerda:
 - **Zoom in**: Aproxime o dedo indicador do polegar para dar zoom in.
-- -  ![Movimento do mouse](src/ZoomIn.png)
+  -  ![Movimento do mouse](src/ZoomOut.png)
 
 - **Zoom out**: Afaste o dedo indicador do polegar para dar zoom out.
-- -  ![Movimento do mouse](src/ZoomOut.png)
+  -  ![Movimento do mouse](src/ZoomIn.png)
 
 
 Esses comandos permitem controlar o mouse e realizar ações de zoom de forma intuitiva usando gestos com as mãos.
