@@ -47,10 +47,10 @@ python Captação de Movimento.py
 - - ![Movimento do mouse](src/CliqueUnico.png)
 
 ### Mão Esquerda:
-- **Zoom in**: Aproxime o dedo indicador do polegar para dar zoom in.
+- **Zoom in**: Afaste o dedo indicador do polegar para dar zoom in.
   -  ![Movimento do mouse](src/ZoomOut.png)
 
-- **Zoom out**: Afaste o dedo indicador do polegar para dar zoom out.
+- **Zoom out**: Aproxime o dedo indicador do polegar para dar zoom out.
   -  ![Movimento do mouse](src/ZoomIn.png)
 
 
