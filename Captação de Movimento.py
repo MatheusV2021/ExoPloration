@@ -11,6 +11,7 @@ cap = cv2.VideoCapture(0)
 
 dedao_fechado = False  # Variável para rastrear o estado do polegar (mão direita)
 scroll_atual = 0  # Variável para rastrear o estado de scroll (mão esquerda)
+clique_unico_executado = False  # Variável para evitar múltiplos cliques únicos
 
 # Função para calcular a distância entre dois pontos
 def calcular_distancia(ponto1, ponto2):
@@ -31,12 +32,25 @@ while True:
             hand_label = result.multi_handedness[idx].classification[0].label
 
             if hand_label == 'Right':  # Apenas a mão direita controla o mouse
-                # Obter as coordenadas do polegar e da base do dedo indicador
+                # Obter as coordenadas do polegar, dedo indicador e dedo médio
                 polegar = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP]
                 base_indicador = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_MCP]
+                meio_dedo = hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_TIP]
 
                 # Calcular a distância entre o polegar e a base do dedo indicador
                 distancia_thumb_indicador = calcular_distancia(polegar, base_indicador)
+
+                # Calcular a distância entre o polegar e o dedo médio (para o clique único)
+                distancia_thumb_meio = calcular_distancia(polegar, meio_dedo)
+
+                # Condição para o clique único (quando o polegar e o dedo médio se tocam)
+                if distancia_thumb_meio < 0.05 and not clique_unico_executado:
+                    pyautogui.click()  # Executa o clique único
+                    clique_unico_executado = True  # Marca o clique como executado
+
+                # Quando os dedos se afastarem, reseta o clique único
+                if distancia_thumb_meio > 0.1:
+                    clique_unico_executado = False  # Permite outro clique único quando os dedos se afastarem
 
                 # Condição para detectar quando o polegar se aproxima da base do indicador
                 if distancia_thumb_indicador < 0.05:  # Ajuste o valor conforme necessário
