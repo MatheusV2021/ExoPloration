@@ -38,6 +38,7 @@ python Captação de Movimento.py
 
 ### Mão Direita:
 - **Movimento do mouse**: O dedo indicador da mão direita controla o movimento do cursor. Mova o indicador para direcionar o mouse na tela.
+- ![Movimento do mouse](src/Mover o mouse.png)
 - **Clicar e segurar**: Aproximar o polegar da base da mão direita aciona o comando de "clique e segurar", simulando um clique contínuo.
 - **Clique único**: Tocar o polegar com o dedo médio da mão direita resulta em um clique único do mouse.
 
