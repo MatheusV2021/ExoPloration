@@ -41,14 +41,18 @@ python Captação de Movimento.py
 - ![Movimento do mouse](src/Movimento.jpeg)
   
 - **Clicar e segurar**: Aproximar o polegar da base da mão direita aciona o comando de "clique e segurar", simulando um clique contínuo.
-- - ![Movimento do mouse](src/CliqueSegurado.jpeg)
+- - ![Movimento do mouse](src/CliqueSegurado.png)
 
 - **Clique único**: Tocar o polegar com o dedo médio da mão direita resulta em um clique único do mouse.
-- - ![Movimento do mouse](src/CliqueUnico.jpeg)
+- - ![Movimento do mouse](src/CliqueUnico.png)
 
 ### Mão Esquerda:
 - **Zoom in**: Aproxime o dedo indicador do polegar para dar zoom in.
+- - - ![Movimento do mouse](src/ZoomIn.png)
+
 - **Zoom out**: Afaste o dedo indicador do polegar para dar zoom out.
+- - - ![Movimento do mouse](src/ZoomOut.png)
+
 
 Esses comandos permitem controlar o mouse e realizar ações de zoom de forma intuitiva usando gestos com as mãos.
 
