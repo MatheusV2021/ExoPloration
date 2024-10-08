@@ -1,6 +1,32 @@
 import cv2
 import mediapipe as mp
 import pyautogui
+import webbrowser
+
+# Função para exibir o menu e escolher a URL
+def escolher_url():
+    print("Escolha uma URL para abrir:")
+    print("1. https://eyes.nasa.gov/apps/exo/#/")
+    print("2. https://eyes.nasa.gov/apps/exo/#/filter/KeplerAllDiscoveries")
+    print("3. https://eyes.nasa.gov/apps/exo/#/filter/TESSAllDiscoveries")
+
+    opcao = input("Digite o número da opção desejada: ")
+
+    if opcao == "1":
+        return "https://eyes.nasa.gov/apps/exo/#/"
+    elif opcao == "2":
+        return "https://eyes.nasa.gov/apps/exo/#/filter/KeplerAllDiscoveries"
+    elif opcao == "3":
+        return "https://eyes.nasa.gov/apps/exo/#/filter/TESSAllDiscoveries"
+    else:
+        print("Opção inválida. Abrindo a URL padrão...")
+        return "https://eyes.nasa.gov/apps/exo/#/"
+
+# Chama a função para escolher a URL
+url = escolher_url()
+
+# Abre o link no navegador padrão
+webbrowser.open(url)
 
 # Configuração do Mediapipe
 mp_hands = mp.solutions.hands
@@ -93,7 +119,9 @@ while True:
                 else:
                     scroll_atual = 0  # Reset do estado de scroll
 
-    cv2.imshow("Hand Tracking", img)
+    img_resized = cv2.resize(img, (1280, 720))
+
+    cv2.imshow("Hand Tracking", img_resized)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
